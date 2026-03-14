@@ -33,6 +33,6 @@ jobs:
       - name: Create Issue from result
         uses: peter-evans/create-issue-from-file@v4
         with:
-          title: "📝 本日の英検準1級：問題"
+          title: "📝 本日の韓国語能力試験(TOPIK II)：問題"
           content-filepath: result.md
           labels: "daily-study, help wanted"
