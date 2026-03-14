@@ -1,0 +1,38 @@
+name: Run Python Email Script
+
+on:
+  schedule:
+    - cron: '0 */3 * * *' # 3時間ごとに実行
+  workflow_dispatch: # 手動実行用ボタン
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read    # コードの読み取り権限
+      issues: write     # Issueを作成・書き込みする権限
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -U google-genai
+
+      - name: Run script
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python send_mail.py
+
+      - name: Create Issue from result
+        uses: peter-evans/create-issue-from-file@v4
+        with:
+          title: "📝 本日の英検準1級：問題"
+          content-filepath: result.md
+          labels: "daily-study, help wanted"
