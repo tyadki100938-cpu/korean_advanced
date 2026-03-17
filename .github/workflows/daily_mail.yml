@@ -2,7 +2,7 @@ name: Run Python Email Script
 
 on:
   schedule:
-    - cron: '0 */3 * * *' # 3時間ごとに実行
+    - cron: '0 */6 * * *' # 3時間ごとに実行
   workflow_dispatch: # 手動実行用ボタン
 
 jobs:
@@ -33,6 +33,6 @@ jobs:
       - name: Create Issue from result
         uses: peter-evans/create-issue-from-file@v4
         with:
-          title: "📝 本日の韓国語能力試験(TOPIK II)：問題"
+          title: "韓国語学習"
           content-filepath: result.md
           labels: "daily-study, help wanted"
