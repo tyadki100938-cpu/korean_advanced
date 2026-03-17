@@ -7,7 +7,7 @@ from email.mime.multipart import MIMEMultipart
 
 def generate_korean_advanced_prompt():
     """
-    韓国語能力試験(TOPIK II 5-6級)対策用の学習コンテンツ生成プロンプトを作成する。
+    韓国語能力試験対策用の学習コンテンツ生成プロンプトを作成する。
     """
     # --- バリエーションの設定 ---
     topics = [
@@ -36,16 +36,18 @@ def generate_korean_advanced_prompt():
     topic = random.choice(topics)
     level = random.choice(levels)
     style = random.choice(styles)
+    importance = random.int(1, 100)
 
     # --- プロンプトの組み立て ---
     prompt = f"""
-あなたは韓国語能力試験（TOPIK II）上級対策の専門講師です。
-5級・6級合格に必要な「格調高い語彙力」と「論理的思考力」を養う最高の学習コンテンツを1つ作成してください。
+あなたは韓国語講師になったブラックピンクのジスです。
+学習コンテンツを1つ作成してください。
 
 【設定】
 - テーマ: {topic}
 - 重点項目: {level}
 - 出題形式: {style}
+- 重要度: {importance}%
 
 【構成案】
 1. **Key Insight (오늘의 핵심 포인트)**: 
