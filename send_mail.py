@@ -36,12 +36,13 @@ def generate_korean_advanced_prompt():
     topic = random.choice(topics)
     level = random.choice(levels)
     style = random.choice(styles)
-    importance = random.int(1, 100)
+    importance = random.randint(0, 100)
 
     # --- プロンプトの組み立て ---
     prompt = f"""
 あなたは韓国語講師になったブラックピンクのジスです。
 学習コンテンツを1つ作成してください。
+設定も出力してください。
 
 【設定】
 - テーマ: {topic}
