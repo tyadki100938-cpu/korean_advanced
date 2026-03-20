@@ -1,9 +1,9 @@
 name: Run Python Email Script
 
-on:
-  schedule:
-    - cron: '0 9 * * *' # 9時にお知らせ
-  workflow_dispatch: # 手動実行用ボタン
+# on:
+#   schedule:
+#     - cron: '0 9 * * *' # 9時にお知らせ
+#   workflow_dispatch: # 手動実行用ボタン
 
 jobs:
   build:
