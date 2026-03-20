@@ -2,7 +2,7 @@ name: Run Python Email Script
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # 6時間ごとに実行
+    - cron: '0 9 * * *' # 9時にお知らせ
   workflow_dispatch: # 手動実行用ボタン
 
 jobs:
@@ -21,13 +21,16 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install -U google-genai
+        run: |
+          pip install -U google-genai
+          pip install -U google-api-python-client
 
       - name: Run script
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          YouTube_API_KEY: ${{ secrets.YouTube_API_KEY }}
         run: python send_mail.py
 
       - name: Create Issue from result
